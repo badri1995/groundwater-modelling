@@ -1,0 +1,164 @@
+{
+  "review_date": "2026-10-29",
+  "scope": "Code only; no data, outputs, credentials or weights. Private Drive links are not published. Source hashes identify the privately retained originals.",
+  "notebooks": [
+    {
+      "notebook": "notebooks/soge_data_adding_shallow.ipynb",
+      "source_name": "soge_data_adding_shallow.ipynb",
+      "source_sha256": "cba7d084acb6358ed39b59787f9337ac6276126bd976b77274e77b17a192e68a",
+      "status": "Previously published portable adaptation retained; original stage reviewed again."
+    },
+    {
+      "notebook": "notebooks/project/soge_data_adding.ipynb",
+      "source_name": "soge_data_adding.ipynb",
+      "source_sha256": "4196dc0874f85eba8d3ac01c8db8d191926bfdc53edbd7468acbc2f9721aa0c5",
+      "published_sha256": "e58e077e4d15efa9408fc40a584874edd91b605683153672115417b39ea24d93",
+      "original_cells": 27,
+      "publication_changes": []
+    },
+    {
+      "notebook": "notebooks/project/checking_ABY_data.ipynb",
+      "source_name": "checking_ABY_data.ipynb",
+      "source_sha256": "aad7bd8fc704e0c5bb27c9e924e96a3f103732ea2694bae7739808da2a38cb86",
+      "published_sha256": "ff65b16ba9a1b24e2d810b5fcfba2cab452f1a8608262ea08af673268a962c91",
+      "original_cells": 117,
+      "publication_changes": [
+        "cell 0: removed environment/navigation command",
+        "cell 1: removed environment/navigation command"
+      ]
+    },
+    {
+      "notebook": "notebooks/project/adding_stream_order_terrain_info.ipynb",
+      "source_name": "adding_stream_order_terrain_info.ipynb",
+      "source_sha256": "d7739d3e9081a345e9586e1331fbf708dc5aa980ef4cc566adccd41de893c11b",
+      "published_sha256": "fd7b0169d41eda57f4cdfb8799b779d942b7a60643a0fdc460bc93af24315edc",
+      "original_cells": 56,
+      "publication_changes": [
+        "cell 0: removed environment/navigation command",
+        "cell 18: removed environment/navigation command"
+      ]
+    },
+    {
+      "notebook": "notebooks/project/extracting_mws_ids_aquifer_wise.ipynb",
+      "source_name": "extracting_mws_ids_aquifer_wise.ipynb",
+      "source_sha256": "8339d7d823bf125f0480db43a8f4abbf411ce7feaeab2566534a466835cc746e",
+      "published_sha256": "370c73a373a19bd5dfc69e5ed5354fc8ebc1a3a85fd3d8784543d0c42fafeefb",
+      "original_cells": 9,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/mapping_microwatershed_with_aquifer.ipynb",
+      "source_name": "mapping_microwatershed_with_aquifer.ipynb",
+      "source_sha256": "2cb2a3a2f098b30a6e371c34b248d95c101310643d2d58caba26904f7ad823a1",
+      "published_sha256": "4b9ee36775c3d3bb1d9e7056fb6ff6c5ff121b355798e0ec4a96708b8fea8084",
+      "original_cells": 17,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/creating_aquifer_wise_training_data.ipynb",
+      "source_name": "creating_aquifer_wise_training_data.ipynb",
+      "source_sha256": "03085e9861c7ee99506886fdbb9a7656b9c9ed5e7b65b1c3b1f226b9e5dfae4c",
+      "published_sha256": "a40a77824e4d1381e4ae5e1a4bf5565d3611ea3260fa7eee22c18ca617296e8c",
+      "original_cells": 55,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/preprocessing_calculated_data.ipynb",
+      "source_name": "preprocessing_calculated_data.ipynb",
+      "source_sha256": "aa736cf27e0482e7a17076a41f526963e7a9bcb7cfe35b3b2d76b33d5670613b",
+      "published_sha256": "60d47b28f088606ef0630530720c3fb9f5cda8ce5b2dcac70a65c401ecfade8e",
+      "original_cells": 9,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/combining_aquifer_types_based_on_ACWADAM.ipynb",
+      "source_name": "combining_aquifer_types_based_on_ACWADAM.ipynb",
+      "source_sha256": "485f84f149f46934ae1d2ee836531fea552881cc5e06d689f514d104188d6189",
+      "published_sha256": "4b09c9168a57a0ce10d445205b1785f13adfe3e597b0817480265fc86b83fd3f",
+      "original_cells": 26,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/analyzing_CGWB_raw_data.ipynb",
+      "source_name": "analyzing_CGWB_raw_data.ipynb",
+      "source_sha256": "e9759027f957f385c8b0e9d45bdaeb5f7fe2b9a3001728be44f9409b31d93432",
+      "published_sha256": "5e9880faa3fffd494cdcd4b7fe84acf1a07f8d9e1e7c6b63f04cf3db5cc27a1e",
+      "original_cells": 28,
+      "publication_changes": [
+        "cell 0: removed environment/navigation command",
+        "cell 13: removed environment/navigation command"
+      ]
+    },
+    {
+      "notebook": "notebooks/mapping_wells_with_microwatershed.ipynb",
+      "source_name": "mapping_wells_with_microwatershed.ipynb",
+      "source_sha256": "cc4bccb2700d1d1a883ecec347fabcc798cb9d345a89470590e4bd4a6817ea90",
+      "status": "Previously published portable adaptation retained; original stage reviewed again."
+    },
+    {
+      "notebook": "notebooks/project/thresholding_mws_data_aquifer_wise.ipynb",
+      "source_name": "thresholding_mws_data_aquifer_wise.ipynb",
+      "source_sha256": "0b98c8e69d2ddea642771c5f168e10e568e92c554d16df1282526781c01c2c00",
+      "published_sha256": "932bad3f0795d1464348080213f0ec790a876f368087b8d081b21f70c4d82840",
+      "original_cells": 12,
+      "publication_changes": ["cell 0: removed environment/navigation command"]
+    },
+    {
+      "notebook": "notebooks/project/cleaning_ground_truth.ipynb",
+      "source_name": "cleaning_ground_truth.ipynb",
+      "source_sha256": "625cbc7aebbbc44abcf734f615a9c3ffca0bf04e299628dfac83ba07d89da1f4",
+      "published_sha256": "7568648cca843ca1d03536e16d7c5d0be6564f55ef8d6b3ff61fe4fd1d3910ff",
+      "original_cells": 253,
+      "publication_changes": [
+        "cell 0: removed environment/navigation command",
+        "cell 129: removed environment/navigation command",
+        "cell 13: removed environment/navigation command",
+        "cell 50: removed environment/navigation command",
+        "cell 60: removed environment/navigation command",
+        "cell 66: removed environment/navigation command",
+        "cell 68: corrected stray slash before import"
+      ]
+    },
+    {
+      "notebook": "notebooks/project/preprocessing_shallow_five_years.ipynb",
+      "source_name": "preprocessing_shallow_five_years.ipynb",
+      "source_sha256": "b2d4b92884e77647d88f5151c991b119e77636777cf3c7b24834df3fcfbf7f60",
+      "published_sha256": "083bb8cba9d9de098242281e63fc1212a9d7e25f5dee16124a0a45c736f8aad7",
+      "original_cells": 329,
+      "publication_changes": [
+        "cell 0: removed environment/navigation command",
+        "cell 137: removed environment/navigation command",
+        "cell 247: removed accidental top-level indentation",
+        "cell 2: removed environment/navigation command",
+        "cell 3: removed environment/navigation command"
+      ]
+    },
+    {
+      "notebook": "notebooks/project/preprocessing_deep_aquifers_five_years.ipynb",
+      "source_name": "preprocessing_deep_aquifers_five_years.ipynb",
+      "source_sha256": "8714008ea1f272b768713b7237f3be68e3341289333135e029609aa794ff81a8",
+      "published_sha256": "02a381232145d61355eb3d837c70fbc9dca7cad8163724c86775761426ed0de2",
+      "original_cells": 329,
+      "publication_changes": [
+        "cell 139: removed environment/navigation command",
+        "cell 248: removed accidental top-level indentation"
+      ]
+    },
+    {
+      "notebook": "notebooks/project/CONVERTING_AQUIFER_INFILTRATION_RATE.ipynb",
+      "source_name": "CONVERTING_AQUIFER_INFILTRATION_RATE.ipynb",
+      "source_sha256": "7c764c47d58a7fe433083e5e7251ab1ff8e5f8e73791bb332e48a97ce915c23c",
+      "published_sha256": "cb9e8bc52e34b2f27f7660196322814ef323ffe089987aee9cca01ca2a0b17eb",
+      "original_cells": 11,
+      "publication_changes": []
+    },
+    {
+      "notebook": "notebooks/project/Copy_of_preprocessing_deep_aquifers.ipynb",
+      "source_name": "Copy_of_preprocessing_deep_aquifers.ipynb",
+      "source_sha256": "ab09ac717efdd657540a7043d60fddb42e90cbc637e8e66fce9f4a8a86397090",
+      "published_sha256": "841e80f8bf7b2b5e65b72602c1c87bea4d309d70208730fac6d766db53d79428",
+      "original_cells": 99,
+      "publication_changes": []
+    }
+  ]
+}

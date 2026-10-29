@@ -1,72 +1,66 @@
-# Groundwater modelling: geospatial preparation
+# CGWB groundwater modelling
 
-Selected research notebooks from Badrinath Padmanabhan's groundwater modelling work at IIT Delhi.
+Research source from Badrinath Padmanabhan's groundwater work at IIT Delhi, covering monitoring-well observations, aquifer and terrain integration, and deep/shallow groundwater-depth modelling.
 
-This initial release covers representative-well selection and groundwater development feature integration at micro-watershed scale. It is a source snapshot of preparation stages, **not** a complete trained groundwater prediction system.
+The expanded release contains **17 distinct notebooks**, not just the two preparation examples in the first publication. It includes the original deep and shallow five-year modelling notebooks recovered from Colab, earlier regression work, the infiltration helper, and the code-bearing stages of the main Drive project.
 
-## Start here
+## Read the project in order
 
-`prepare_wells.py` extracts the useful well-selection stage from the exploratory mapping notebook into a runnable workflow:
+Start with the [workflow and source coverage map](WORKFLOW.md). It links each notebook to its stage and explains the historical folder names, dependencies and known limitations.
+
+| Area                                 | Included work                                                                                                                                               |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Observations and spatial preparation | Ground-truth cleaning, continuity, representative wells, micro-watershed/aquifer joins and thresholds                                                       |
+| Covariates                           | Stream order, terrain, calculated water depth, ABY observations, SOGE assessments, cropping, catchment/connectivity and infiltration inputs                 |
+| Deep and shallow modelling           | Five-year/lagged features, trend analysis, grouped splits, OLS/WLS and machine-learning comparisons, threshold classification and cross-aquifer experiments |
+| Earlier experiments                  | Combined ground-truth archive, seasonal training-table models and the earlier deep-aquifer preprocessing notebook                                           |
+
+These are authentic exploratory source notebooks. They retain alternative branches, repeated definitions and study-specific assumptions. Their presence is not a claim that every notebook runs from top to bottom or that scientific results have been reproduced.
+
+## Small runnable entry point
+
+`prepare_wells.py` is the earlier portable refactor of the representative-well selection stage. It is intentionally smaller than the research archive.
 
 ```bash
 python -m pip install -r requirements.txt
 python prepare_wells.py --demo --output outputs/demo
 ```
 
-The demo creates artificial well points and two rectangular watersheds. It demonstrates containment, continuity-based selection and unmatched boundary points. It uses no actual well locations or research data.
+The demo uses artificial points and two rectangular watersheds. It tests geometry handling and selection logic, not groundwater prediction.
 
-## Run with authorised geospatial data
+For authorised data:
 
 ```bash
 python prepare_wells.py --wells data/wells.geojson \
   --watersheds data/watersheds.geojson --output outputs/well_mapping
 ```
 
-Wells require unique `station_id` values, point geometries and a nonnegative integer `consecutive_non_nan_pairs` field calculated by the upstream observation-cleaning stage. Watersheds require unique `mws_id` values and polygon geometries. Both files must have a known CRS. The workflow reprojects well points to the watershed CRS; it never guesses or overwrites missing CRS metadata.
+Wells need unique `station_id`, point geometries and nonnegative integer `consecutive_non_nan_pairs`. Watersheds need unique `mws_id` and polygon geometries. Both inputs need a known CRS. The workflow reprojects well points, uses strict `within` containment and rejects ambiguous overlapping-polygon assignments. Boundary points remain unmatched. Selection favours the highest continuity count, then station ID for ties. GeoJSON exports use WGS84.
 
-The workflow uses `within`, so points on polygon boundaries remain unmatched. Wells inside overlapping polygons trigger an error rather than an arbitrary assignment. It selects the highest continuity count within each watershed, breaking ties by station ID. Outputs are representative well points, unmatched well points and a summary. GeoJSON outputs use WGS84 longitude/latitude. No hardcoded geographic region, random sampling or trained model is involved.
-
-This is a new portable refactor of the existing mapping stage, not a reconstruction of missing groundwater prediction code. The original exploratory notebooks are retained below for provenance and feature-integration context. Their study-specific filters and intermediate schemas differ from the explicit CLI contract.
-
-## Included notebooks
-
-| Notebook                                  | Purpose                                                                                                                                                |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `mapping_wells_with_microwatershed.ipynb` | Inspect geometries, associate monitoring wells with containing micro-watersheds and select representative wells using available observation continuity |
-| `soge_data_adding_shallow.ipynb`          | Join groundwater assessment blocks to micro-watersheds and derive annual development-percentage features from assessment years                         |
-
-The broader project also includes well cleaning, aquifer integration, terrain features and regression experiments. Those stages have not been included in this reviewed release. No datasets, coordinates of individual wells, generated maps, notebook outputs or trained models are distributed.
-
-## Setup
+## Research notebook setup
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-research.txt
+export CGWB_WORKSPACE=/absolute/path/to/private/cgwb_workspace
 jupyter lab
 ```
 
-Each notebook begins with portable path configuration. Inputs default to `data/` and generated files go to `outputs/` at the repository root. Set `RESEARCH_DATA_DIR` and `RESEARCH_OUTPUT_DIR` to override these locations.
+`requirements-research.txt` is an inventory of the broader source dependencies, not a recreated historical lockfile. Some older APIs and geospatial pickles may require the original environment. Install only the dependencies needed for the branch being inspected.
 
-Supply authorised copies of the following inputs:
-
-| Notebook            | Required files                                                                                                                                      |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Well mapping        | `micro_watershed_gdf.pickle`, `cgwb_from_2001_preprocessed_data.pickle`                                                                             |
-| Feature integration | `gwra2011.geojson`, `gwra2013.geojson`, `gwra2017.geojson`, `gwra2020.geojson`, `shallow_aquifers_csv_export.csv`, `Indian_states_boundary.geojson` |
-
-The source assumes particular geometry, identifier and assessment fields, including micro-watershed IDs and `sgw_dev_pe`. Inspect those schemas and coordinate reference systems before running. Only load trusted pickle files. Historical geospatial pickles may require their original library versions.
+Newly recovered notebooks live in `notebooks/project/` and use `CGWB_WORKSPACE`. Existing well-mapping and shallow-SOGE adaptations remain directly under `notebooks/` with their earlier `RESEARCH_DATA_DIR` / `RESEARCH_OUTPUT_DIR` configuration. [WORKFLOW.md](WORKFLOW.md) explains both layouts and the older stage numbers still referenced by the source. Supply authorised inputs and create the relevant output folders before execution. Only deserialize trusted pickle/joblib files.
 
 ## Research limits
 
-These notebooks retain exploratory plotting and intermediate calculations. They require manual review rather than an unattended “Run all” workflow. Geographic filters, random samples, one-block-per-watershed choices, missing matches and overlapping geometries must be checked against the intended study region.
+Spatial and temporal dependence, feature selection, inner validation and preprocessing scope require a fresh audit before reporting accuracy. Some branches use grouped outer splits without consistently grouped inner validation. Several metrics include MAPE, which is problematic for near-zero depth changes. Development-percentage interpolation and trend-derived features are estimates, not observations.
 
-Interpolated or extrapolated annual features are derived values, not measurements for those years. The notebook's assumptions must be evaluated before using them in a model. This release does not establish prediction accuracy, causal effects or suitability for water-management decisions.
+The archive includes model-fitting code but no trained weights, reproduced benchmark or deployment claim. It is not validated for operational water-management decisions.
 
-## Provenance and checks
+## Provenance and privacy
 
-The notebooks come from the existing research Drive project. Publication cleanup removed outputs, execution metadata, Colab mounting and package-install cells, and replaced private Drive paths. A stale intermediate reload was omitted so that the earlier join result remains available in memory. Scientific calculations and historical exploratory choices were otherwise retained.
+The originals remain unchanged in Drive. Publication removes notebook outputs, execution metadata, installation/mount commands and private paths. Two obvious syntax defects were mechanically repaired as documented in the workflow. The previous small CLI and portable notebook adaptations are retained. [source_manifest.json](source_manifest.json) records original filenames, private-source hashes and cleanup notes.
 
-Notebook structure, code-cell syntax and the release file allowlist have been checked. No original-data workflow, model training or geospatial benchmark was rerun. Full reproducibility is not claimed.
+Notebook structure, code-cell syntax and the code-only release boundary are checked. The portable synthetic demo is checked separately; original-data training and full geospatial workflows have not been rerun.
 
-This is part of collaborative research, not a claim of sole ownership of the underlying data or wider project. No project-wide licence has been added. Obtain source data through its authorised providers and respect its redistribution terms.
+No datasets, individual well locations, generated maps, medical data, credentials or model weights are distributed. This is collaborative research source, not a claim of sole ownership of the underlying data or wider project. No project-wide licence is added.
