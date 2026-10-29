@@ -4,6 +4,30 @@ Selected research notebooks from Badrinath Padmanabhan's groundwater modelling w
 
 This initial release covers representative-well selection and groundwater development feature integration at micro-watershed scale. It is a source snapshot of preparation stages, **not** a complete trained groundwater prediction system.
 
+## Start here
+
+`prepare_wells.py` extracts the useful well-selection stage from the exploratory mapping notebook into a runnable workflow:
+
+```bash
+python -m pip install -r requirements.txt
+python prepare_wells.py --demo --output outputs/demo
+```
+
+The demo creates artificial well points and two rectangular watersheds. It demonstrates containment, continuity-based selection and unmatched boundary points. It uses no actual well locations or research data.
+
+## Run with authorised geospatial data
+
+```bash
+python prepare_wells.py --wells data/wells.geojson \
+  --watersheds data/watersheds.geojson --output outputs/well_mapping
+```
+
+Wells require unique `station_id` values, point geometries and a nonnegative integer `consecutive_non_nan_pairs` field calculated by the upstream observation-cleaning stage. Watersheds require unique `mws_id` values and polygon geometries. Both files must have a known CRS. The workflow reprojects well points to the watershed CRS; it never guesses or overwrites missing CRS metadata.
+
+The workflow uses `within`, so points on polygon boundaries remain unmatched. Wells inside overlapping polygons trigger an error rather than an arbitrary assignment. It selects the highest continuity count within each watershed, breaking ties by station ID. Outputs are representative well points, unmatched well points and a summary. GeoJSON outputs use WGS84 longitude/latitude. No hardcoded geographic region, random sampling or trained model is involved.
+
+This is a new portable refactor of the existing mapping stage, not a reconstruction of missing groundwater prediction code. The original exploratory notebooks are retained below for provenance and feature-integration context. Their study-specific filters and intermediate schemas differ from the explicit CLI contract.
+
 ## Included notebooks
 
 | Notebook                                  | Purpose                                                                                                                                                |
